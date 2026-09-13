@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color"
+        content="#09090b">
+
+  <meta name="description"
+        content="PiruNames — generador de nombres únicos">
+
+  <title>PiruNames • Generador de Nombres</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+  <div class="brand">
+
+    <div class="brand-icon">
+      P
+    </div>
+
+    <div>
+      <h1>PiruNames</h1>
+      <p>Generador de nombres</p>
+    </div>
+
+  </div>
+
+  <button
+    class="icon-button"
+    onclick="openFavorites()"
+    aria-label="Favoritos">
+    ❤️
+    <span id="favoriteCount">0</span>
+  </button>
+
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-badge">
+      ✨ GENERADOR DE NOMBRES
+    </div>
+
+    <h2>
+      Encontrá un nombre
+      <span>que te represente.</span>
+    </h2>
+
+    <p>
+      Generá nombres únicos para tus redes,
+      juegos, negocios, mascotas y mucho más.
+    </p>
+
+  </section>
+
+
+  <!-- GENERADOR -->
+
+  <section class="generator">
+
+    <div class="panel">
+
+      <div class="panel-title">
+
+        <div>
+          <span class="eyebrow">
+            CONFIGURACIÓN
+          </span>
+
+          <h2>
+            ¿Qué nombre buscás?
+          </h2>
+        </div>
+
+      </div>
+
+
+      <!-- CATEGORÍA -->
+
+      <label>
+        Categoría
+
+        <select id="category">
+
+          <option value="personal">
+            👤 Personal
+          </option>
+
+          <option value="gamer">
+            🎮 Gamer
+          </option>
+
+          <option value="social">
+            📱 Redes sociales
+          </option>
+
+          <option value="business">
+            💼 Negocio
+          </option>
+
+          <option value="pet">
+            🐶 Mascota
+          </option>
+
+          <option value="fantasy">
+            ⚔️ Fantasía
+          </option>
+
+          <option value="nickname">
+            😈 Apodo
+          </option>
+
+          <option value="aesthetic">
+            ✨ Aesthetic
+          </option>
+
+        </select>
+
+      </label>
+
+
+      <!-- ESTILO -->
+
+      <label>
+        Estilo
+
+        <select id="style">
+
+          <option value="random">
+            🎲 Aleatorio
+          </option>
+
+          <option value="cool">
+            😎 Cool
+          </option>
+
+          <option value="dark">
+            🌑 Dark
+          </option>
+
+          <option value="aesthetic">
+            ✨ Aesthetic
+          </option>
+
+          <option value="elegant">
+            👑 Elegante
+          </option>
+
+          <option value="funny">
+            😂 Divertido
+          </option>
+
+          <option value="short">
+            ⚡ Corto
+          </option>
+
+        </select>
+
+      </label>
+
+
+      <!-- CANTIDAD -->
+
+      <label>
+        Cantidad
+
+        <select id="amount">
+
+          <option value="5">
+            5 nombres
+          </option>
+
+          <option value="10" selected>
+            10 nombres
+          </option>
+
+          <option value="20">
+            20 nombres
+          </option>
+
+          <option value="50">
+            50 nombres
+          </option>
+
+        </select>
+
+      </label>
+
+
+      <button
+        class="generate-button"
+        onclick="generateNames()">
+
+        ✨ Generar nombres
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- RESULTADOS -->
+
+  <section
+    id="resultsSection"
+    class="results-section hidden">
+
+    <div class="section-heading">
+
+      <div>
+
+        <span class="eyebrow">
+          RESULTADOS
+        </span>
+
+        <h2>
+          Tus nombres
+        </h2>
+
+      </div>
+
+      <button
+        class="secondary-button"
+        onclick="generateNames()">
+
+        🔄 Regenerar
+
+      </button>
+
+    </div>
+
+
+    <div class="result-tools">
+
+      <input
+        id="resultSearch"
+        class="search"
+        type="text"
+        placeholder="🔎 Buscar entre los resultados..."
+        oninput="searchResults()">
+
+    </div>
+
+
+    <div
+      id="results"
+      class="results-grid">
+    </div>
+
+  </section>
+
+
+  <!-- FAVORITOS -->
+
+  <section
+    id="favoritesSection"
+    class="favorites-section hidden">
+
+    <div class="section-heading">
+
+      <div>
+
+        <span class="eyebrow">
+          GUARDADOS
+        </span>
+
+        <h2>
+          Mis favoritos ❤️
+        </h2>
+
+      </div>
+
+      <button
+        class="secondary-button"
+        onclick="clearFavorites()">
+
+        🗑️ Vaciar
+
+      </button>
+
+    </div>
+
+
+    <div
+      id="favorites"
+      class="results-grid">
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <div class="cta-icon">
+      🔤
+    </div>
+
+    <h2>
+      ¿No encontraste el indicado?
+    </h2>
+
+    <p>
+      Cambiá las opciones y generá
+      una nueva lista.
+    </p>
+
+    <button
+      onclick="generateNames()">
+
+      Generar nuevamente
+
+    </button>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <strong>
+    PiruNames
+  </strong>
+
+  <p>
+    Generador de nombres
+  </p>
+
+  <div class="footer-line"></div>
+
+  <small>
+    © 2026 PiruNames
+  </small>
+
+</footer>
+
+
+<!-- TOAST -->
+
+<div
+  id="toast"
+  class="toast">
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+  </html>
